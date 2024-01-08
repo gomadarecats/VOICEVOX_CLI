@@ -1,0 +1,2 @@
+# VOICEVOX_CLI
+CLIからVOICEVOXの音声を生成、再生する
