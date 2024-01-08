@@ -18,5 +18,5 @@ OPTIONS
 VOICEVOXサーバ用
 IPアドレスは変数で食わせたい……
 ```
-docker run -d --network <network> --ip <IPaddress> -p 50021:50021 egoma/voicevox
+docker run -d --network <network> --ip <IPaddress> -p 50021:50021 tag/image
 ```
