@@ -13,3 +13,10 @@ OPTIONS
 -outpath[string]  省略可, 保存先パス(saveオプション必須), デフォルト値は [System.IO.Path]::GetTempPath()
 -save[boolean]　  省略可, outpathに保存する, デフォルト値はなし(false)
 ```
+
+## Dockerfile
+VOICEVOXサーバ用
+IPアドレスは変数で食わせたい……
+```
+docker run -d --network <network> --ip <IPaddress> -p 50021:50021 egoma/voicevox
+```
