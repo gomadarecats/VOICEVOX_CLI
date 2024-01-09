@@ -1,5 +1,7 @@
 # VOICEVOX_CLI
 CLIからVOICEVOXの音声を生成、再生する
+
+VOICEVOXは起動させておく必要があります。
 ### Usage
 ```
 <path>\VOICEVOX_CLI.ps1 exampletext [OPTION]
