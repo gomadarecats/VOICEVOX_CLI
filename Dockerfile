@@ -17,6 +17,7 @@ RUN apt update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN wget https://github.com/VOICEVOX/voicevox/releases/download/0.14.10/voicevox-linux-cpu-0.14.10.tar.gz && \
-    tar zxfv voicevox-linux-cpu-0.14.10.tar.gz
+    tar zxfv voicevox-linux-cpu-0.14.10.tar.gz && \
+    rm -f voicevox-linux-cpu-0.14.10.tar.gz
 
 CMD /VOICEVOX/run --host 172.18.50.21
