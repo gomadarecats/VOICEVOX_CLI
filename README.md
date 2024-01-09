@@ -11,7 +11,7 @@ VOICEVOXは起動させておく必要があります。
 OPTIONS
 -text[string]     必須(-textは省略可能), 生成するテキストを入力
 -speaker[int]     省略可, キャラクター番号？, デフォルト値は1
--vvoxhost[string] 省略可, VOICEVOXを動かしているホストのIPアドレス, デフォルト値はlocalhost
+-vvoxhost[string] 省略可, VOICEVOXを動かしているホストのIPアドレス, デフォルト値は127.0.0.1
 -outpath[string]  省略可, 保存先パス(saveオプション必須), デフォルト値は [System.IO.Path]::GetTempPath()
 -save[boolean]　  省略可, outpathに保存する, デフォルト値はなし(false)
 ```
