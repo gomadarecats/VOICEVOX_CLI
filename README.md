@@ -19,5 +19,5 @@ VOICEVOXサーバ用
 
 //IPアドレスは変数で食わせたい……
 ```
-docker run -d --network <network> --ip <IPaddress> -p 50021:50021 tag/image
+docker run -d --network <network> --ip 172.18.50.21 -p 50021:50021 tag/image
 ```
