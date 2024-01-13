@@ -1,22 +1,59 @@
 # VOICEVOX_CLI
-CLIからVOICEVOXの音声を生成、再生する
+概要
 
-VOICEVOXは起動させておく必要があります。
+    WindowsのCLI(PowerShell)からVOICEVOXでテキストを読み上げるスクリプトです。
+
+
+構文
+
+    VOICEVOX_CLI.ps1 [[-text] <String>] [[-stylelist] <String>] [[-style] <Int32>] [[-vvoxhost] <String>] [[-outpath] <String>] [-save] [-help]
+
+
+説明
+
+    VOICEVOX Engine API を利用してテキストを読み上げます。
+
+
+パラメーター
+
+    -text <String>
+        読み上げテキストの設定を設定します。
+        原則必須のパラメータです。パラメータ指定文字列(-text)は省略可能です。
+
+    -stylelist <String>
+        スタイル(speaker)のリストを取得します。
+        省略可能なパラメータです。このオプションが有効な場合は text パラメータの処理が行われません。
+
+    -style <Int32>
+        スタイルを設定します。
+        省略可能なパラメータです。省略した場合はid 3のスタイルを利用します。
+
+    -vvoxhost <String>
+        VOICEVOXを起動しているホストのIPアドレスを設定します。
+        VOICEVOX Engine APIのリクエストに利用します。
+        省略可能なパラメータです。省略した場合は127.0.0.1にリクエストします。
+
+    -outpath <String>
+        生成した音声ファイルの出力先パスを設定します。
+        省略可能なパラメータです。省略した場合はテンポラリフォルダに保存されます。
+
+    -save [<SwitchParameter>]
+        生成した音声ファイルを保存します。
+        省略可能なパラメータです。省略した場合は生成した音声ファイルを保存しません。
+
+    -help [<SwitchParameter>]
+        ヘルプを表示します。
 ### Usage
 ```
 <path>\VOICEVOX_CLI.ps1 exampletext
+    id 3のスタイルで"exampletext"を読み上げます。
+
 <path>\VOICEVOX_CLI.ps1 -stylelist example
+    exampleにマッチする名前(キャラクター)のスタイルの一覧を出力します。
+
 <path>\VOICEVOX_CLI.ps1 -text exampletext -speaker 123 -vvoxhost 127.0.0.1 -outpath C:\output.wav -save
-```
-```
-OPTIONS
--text[string]          : 必須(-textは省略可能), 生成するテキストを入力
--stylelist[string]     : 省略可, キャラクター名にマッチするスタイルの一覧を表示
--style[int32]          : 省略可, スタイル番号, デフォルト値は3
--vvoxhost[string]      : 省略可, VOICEVOXを動かしているホストのIPアドレス, デフォルト値は127.0.0.1
--outpath[string]       : 省略可, 保存先パス(saveオプション必須), デフォルト値は [System.IO.Path]::GetTempPath()
--save[SwitchParameter] : 省略可, outpathに保存する, デフォルト値はなし(false), -saveだけでtrueになる
--help[SwitchParameter] : 省略可, ヘルプを表示
+    127.0.0.1宛にid 123のスタイルで"exampletext"を読み上げる音声を生成するリクエストを送信します。
+    生成した音声ファイルをC:\output.wavに保存します。
 ```
 
 ## Dockerfile
