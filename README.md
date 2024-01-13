@@ -43,6 +43,7 @@
 
     -help [<SwitchParameter>]
         ヘルプを表示します。
+
 ### Usage
 ```
 <path>\VOICEVOX_CLI.ps1 exampletext
