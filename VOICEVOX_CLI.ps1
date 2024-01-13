@@ -35,7 +35,7 @@
 
     .EXAMPLE
         VOICEVOX_CLI.ps1 exampletext
-        id 1のスタイルで"exampletext"を読み上げます。
+        id 3のスタイルで"exampletext"を読み上げます。
 
     .EXAMPLE
         VOICEVOX_CLI.ps1 -stylelist example
