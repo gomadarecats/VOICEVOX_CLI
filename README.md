@@ -53,7 +53,7 @@
     exampleにマッチする名前(キャラクター)のスタイルの一覧を出力します。
 
 <path>\VOICEVOX_CLI.ps1 -text exampletext -speaker 123 -vvoxhost 127.0.0.1 -outpath C:\output.wav -save
-    127.0.0.1宛にid 123のスタイルで"exampletext"を読み上げる音声を生成するリクエストを送信します。
+    127.0.0.1宛にid 123のスタイルで"exampletext"を読み上げる音声を生成するリクエストを送信して再生します。
     生成した音声ファイルをC:\output.wavに保存します。
 ```
 
