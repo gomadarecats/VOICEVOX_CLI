@@ -82,7 +82,7 @@ if ($help -eq $true) {
   exit 0
 }
 
-if ((Test-NetConnection $vvoxhost -Port 50021 -InformationLevel Quiet 3> OUT-Null) -eq $false) {
+if ((Test-NetConnection $vvoxhost -Port 50021 -InformationLevel Quiet 3> $null) -eq $false) {
   echo "Can not connect to VOICEVOX host."
   exit 1
 }
@@ -137,7 +137,7 @@ if ($save -eq $true) {
     }
   }
   else {
-    New-Item -Path $outpath -Type File -Force | Out-Null
+    New-Item -Path $outpath -Type File -Force > $null
   }
 }
 
