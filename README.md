@@ -77,3 +77,5 @@ VOICEVOXサーバ用
 ```
 docker run -d --network <network> --ip 172.18.50.21 -p 50021:50021 tag/image
 ```
+
+アイコンはBing Image Creatorさんに生成いただきました
