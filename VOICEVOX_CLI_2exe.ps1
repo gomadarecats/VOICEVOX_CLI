@@ -103,7 +103,7 @@ $synthe = synthesis
 
 function speech() {
   try {
-    Wait-Process -Name "VOICEVOX_CLI"
+    Wait-Process -Name "VOICEVOX_CLI" >${NULL} 2>&1
     $mstream = New-Object System.IO.MemoryStream($synthe, 0, $synthe.Length)
     $tts = New-Object System.Media.SoundPlayer($mstream)
     $tts.PlaySync()
