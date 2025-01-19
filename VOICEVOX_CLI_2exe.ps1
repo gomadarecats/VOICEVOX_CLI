@@ -10,7 +10,7 @@ Param(
 )
 
 if ($help -eq $true) {
-  Start-Process -Filepath Powershell.exe -ArgumentList '-command &{echo "VOICEVOX_CLI.ps1` [[-text]` `<String`>]` `[[-stylelist]` `<String`>]` `[[-style]` `<Int32`>]` `[[-vvoxhost]` `<String`>]` `[-save]` `[[-outpath]` `<String`>]` `[-overwrite]`n -text �ǂݏグ�e�L�X�g�̐ݒ��ݒ肵�܂��B �����K�{�̃p�����[�^�ł��B�p�����[�^�w�蕶����`(-text`)�͏ȗ��\�ł��B`n  -stylelist �X�^�C��`(speaker`)�̃��X�g���擾���܂��B �ȗ��\�ȃp�����[�^�ł��B���̃I�v�V�������L���ȏꍇ��text�p�����[�^�̏������s���܂���B`n -style �X�^�C����ݒ肵�܂��B �ȗ��\�ȃp�����[�^�ł��B�ȗ������ꍇ��id 3�̃X�^�C���𗘗p���܂��B`n -vvoxhost VOICEVOX���N�����Ă���z�X�g��IP�A�h���X�������̓z�X�g����ݒ肵�܂��B VOICEVOX` Engine` API�̃��N�G�X�g�ɗ��p���܂��B �ȗ��\�ȃp�����[�^�ł��B�ȗ������ꍇ��127.0.0.1�Ƀ��N�G�X�g���܂��B �z�X�g����ݒ肵���ꍇ��IPv6�̐ڑ��e�X�g�������Ēx���Ȃ�̂�IP�A�h���X�w��𐄏����܂��B`n -save �������������t�@�C����ۑ����܂��B �ȗ��\�ȃp�����[�^�ł��B�ȗ������ꍇ�͐������������t�@�C����ۑ����܂���B`n -outpath �������������t�@�C���̏o�͐�p�X��ݒ肵�܂��B �ȗ��\�ȃp�����[�^�ł��B�ȗ������ꍇ�̓e���|�����t�H���_�ɕۑ�����܂��B �ȗ������ꍇ�̃t�@�C������text�p�����[�^�Ŏw�肵��������ɂȂ�܂��B outpath�̃p�����[�^���f�B���N�g���������ꍇ���t�@�C������text�p�����[�^�Ŏw�肵��������ɂȂ�܂��B`n -overwrite outpath�Ɠ����̃t�@�C�������ɑ��݂��Ă���ꍇ�ɏ㏑�����܂��B �ȗ��\�ȃp�����[�^�ł��B�ȗ������ꍇ�͏㏑���m�F�̃_�C�A���O���o�܂��B`n "; pause}'  
+  Start-Process -Filepath Powershell.exe -ArgumentList '-command &{echo "VOICEVOX_CLI.ps1` [[-text]` `<String`>]` `[[-stylelist]` `<String`>]` `[[-style]` `<Int32`>]` `[[-vvoxhost]` `<String`>]` `[-save]` `[[-outpath]` `<String`>]` `[-overwrite]`n -text 読み上げテキストの設定を設定します。 原則必須のパラメータです。パラメータ指定文字列`(-text`)は省略可能です。`n  -stylelist スタイル`(speaker`)のリストを取得します。 省略可能なパラメータです。このオプションが有効な場合はtextパラメータの処理が行われません。`n -style スタイルを設定します。 省略可能なパラメータです。省略した場合はid 3のスタイルを利用します。`n -vvoxhost VOICEVOXを起動しているホストのIPアドレスもしくはホスト名を設定します。 VOICEVOX` Engine` APIのリクエストに利用します。 省略可能なパラメータです。省略した場合は127.0.0.1にリクエストします。 ホスト名を設定した場合はIPv6の接続テストが走って遅くなるのでIPアドレス指定を推奨します。`n -save 生成した音声ファイルを保存します。 省略可能なパラメータです。省略した場合は生成した音声ファイルを保存しません。`n -outpath 生成した音声ファイルの出力先パスを設定します。 省略可能なパラメータです。省略した場合はテンポラリフォルダに保存されます。 省略した場合のファイル名はtextパラメータで指定した文字列になります。 outpathのパラメータがディレクトリだった場合もファイル名はtextパラメータで指定した文字列になります。`n -overwrite outpathと同名のファイルが既に存在している場合に上書きします。 省略可能なパラメータです。省略した場合は上書き確認のダイアログが出ます。`n "; pause}'  
   exit 0
 }
 
@@ -43,7 +43,7 @@ if (-not ([string]::IsNullOrEmpty($stylelist))) {
 
 
 if (([string]::IsNullOrEmpty($stylelist)) -and ([string]::IsNullOrEmpty($text))) {
-  echo "���̃p�����[�^�[�ɒl���w�肵�Ă�������:"
+  echo "次のパラメーターに値を指定してください:"
   $text = Read-Host "text"
 }
 
@@ -54,10 +54,10 @@ if ($save -eq $true) {
   if ((Test-Path $outpath) -eq "True") {
     if ((Test-Path -PathType Leaf $outpath) -eq $true) {
       if ($overwrite -eq $false) {
-        $title = "�㏑���m�F"
-        $msg = $outpath + "���㏑�����܂����H"
-        $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "�㏑������"
-        $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "�㏑�����Ȃ�"
+        $title = "上書き確認"
+        $msg = $outpath + "を上書きしますか？"
+        $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "上書きする"
+        $no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "上書きしない"
         $opts = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
         $res = $host.ui.PromptForChoice($title, $msg, $opts, 1)
         switch ($res)
@@ -103,11 +103,10 @@ $synthe = synthesis
 
 function speech() {
   try {
+    Wait-Process -Name "VOICEVOX_CLI"
     $mstream = New-Object System.IO.MemoryStream($synthe, 0, $synthe.Length)
-    $streamlength = [Math]::Ceiling($mstream.Length / (384 * 1024 / 8))
     $tts = New-Object System.Media.SoundPlayer($mstream)
-    $tts.Play()
-    Start-Sleep -Seconds $streamlength
+    $tts.PlaySync()
         if ($save -eq $true) {
       [System.IO.File]::WriteAllBytes($outpath, $mstream.ToArray())
     }
